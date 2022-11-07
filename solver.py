@@ -94,6 +94,9 @@ class DysonSphereSolver:
         return ret
 
     def print_production_chain(self, target, quantity=1, use_rare_resource=False, use_proliferator=False, translate=True, print_out=True, include_proliferator_usage=True):
+        # translate: set True to print out Chinese
+        # include_proliferator_usage: set True to include the production chain of used proliferated in the total production chain
+        
         if target not in self.items:
             raise NotImplementedError("item {} not in the item list".format(target))
         
@@ -148,7 +151,7 @@ class DysonSphereSolver:
                     else:
                         building_name = self.translation[item[2]] if (item[2] in self.translation and translate) else item[2]
                     building_quant = item[3]
-                    print(u"{:<25}\t|{:.1f}\t|{:<12}\t|{:.1f}".format(item_name, production_rate, building_name, building_quant))
+                    print(u"{:<25}\t|{:.1f}\t|{:<16}\t|{:.1f}".format(item_name, production_rate, building_name, building_quant))
         return production_chain
 
 
